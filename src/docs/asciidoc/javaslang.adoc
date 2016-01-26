@@ -3,7 +3,7 @@
 More Control. Less Code. +
 Functional Library for Java 8+
 
-Rahel Lüthy – [@netzwerg999]http://twitter.com/netzwerg999
+Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999]
 
 == Javaslang
 
