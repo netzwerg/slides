@@ -1,0 +1,47 @@
+= Javaslang
+
+More Control. Less Code. +
+Functional Library for Java 8+
+
+Rahel Lüthy – [@netzwerg999]http://twitter.com/netzwerg999
+
+== Javaslang
+
+* Immutable collections
+* Functional control structures
+
+== Why Immutability?
+
+* Shared mutable state is evil
+* Many possible interactions (hard to test...)
+* Implementations need to handle all of them in a safe way
+* *This is hard!*
+
+== Immutability
+
+* `==` implies `equals`
+* Sharing becomes safe
+* Deep-copying becomes unnecessary
+* Fewer possible interactions
+
+== Functional Programming
+
+If we only use immutable data, we need functional control structures
+
+== Data In – Data Out
+
+* Known as *pure* or *side-effect-free*
+* Easy to understand (just like math)
+* Easy to test
+
+== Readable Code
+
+Programs as data pipelines
+
+Function calls can mentally be replaced by their results
+
+== A Simple Mental Model
+
+Your brain can focus on the scope of one method.
+
+You can be sure that nothing else is relevant.
