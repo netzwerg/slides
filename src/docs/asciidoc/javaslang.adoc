@@ -1,3 +1,4 @@
+:blank: pass:[ +]
 = Javaslang
 
 More Control. Less Code. +
@@ -10,12 +11,53 @@ Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999]
 * Immutable collections
 * Functional control structures
 
-== Why Immutability?
+== Why?
 
-* Shared mutable state is evil
-* Many possible interactions (hard to test...)
-* Implementations need to handle all of them in a safe way
-* *This is hard!*
+Fundamental nonsense at the heart of programming:
+{blank}
+{blank}
+```
+x = x + 1
+```
+{blank}
+But it's an assignment, I hear you say – well...
+
+== Math Functions vs. Java Methods
+
+Math
+```
+y = sin(x)
+```
+{blank}
+Java
+```java
+List<String> doSomething(List<String> list)
+```
+== Math Functions
+
+```
+y = sin(x)
+```
+* 1 input -> 1 output
+* same input -> same output
+* referential transparency
+
+== Java Methods
+
+[source,java,indent=0]
+----
+include::../../main/java/ch/netzwerg/javaslang/Snippets.java[tags=input-output]
+----
+* 3 potential inputs (parameter, instance state, global state)
+* 3 potential outputs (return value, mutable parameter, exception)
+* Goodbye readability...
+
+== We Can Do Better!
+
+* Static (no instance state access)
+* Pass global state as parameters
+* Immutable input parameters
+* Make exceptions explicit
 
 == Immutability
 

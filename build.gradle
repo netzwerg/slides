@@ -75,7 +75,7 @@ asciidoctor {
     attributes	'build-gradle': file('build.gradle'),
             'sourcedir': project.sourceSets.main.java.srcDirs[0],
             'endpoint-url': 'http://example.org',
-            'source-highlighter' : 'coderay',
+            'source-highlighter' : 'highlightjs',
             'imagesdir':'./images',
             'toc':'left',
             'icons': 'font',
