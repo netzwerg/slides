@@ -1,4 +1,7 @@
 :blank: pass:[ +]
+:y: icon:check[role="limegreen"]
+:n: icon:times[role="red"]
+ifndef::imagesdir[:imagesdir: images]
 = Javaslang
 
 More Control. Less Code. +
@@ -42,39 +45,82 @@ y = sin(x)
 * same input -> same output
 * referential transparency
 
+== Data In – Data Out
+
+* Known as *pure* or *side-effect-free*
+* Easy to understand
+* Easy to test
+
+== Java Methods
+
+{blank}
+```java
+List<String> doSomething(List<String> list)
+```
+{blank}
+
+* 3 potential inputs
+* 5 potential outputs
+
 == Java Methods
 
 [source,java,indent=0]
 ----
 include::../../main/java/ch/netzwerg/javaslang/Snippets.java[tags=input-output]
 ----
-* 3 potential inputs (parameter, instance state, global state)
-* 3 potential outputs (return value, mutable parameter, exception)
-* Goodbye readability...
+
+* 3 potential inputs
+* 5 potential outputs
+
+== Garbage In – Garbage Out
+
+[.smaller]
+* 3 potential inputs
+** parameters
+** instance state
+** global state
+* 5 potential outputs
+** return value
+** mutable instance state
+** mutable global state
+** mutable parameters
+** exceptions
+
+== Why Is This Bad?
+
+* Hard to write, read & test
+* Shared mutable state is evil
+{blank}
+{blank}
+
+[.thumb]
+image::tweet.png[width=70%]
 
 == We Can Do Better!
 
-* Static (no instance state access)
-* Pass global state as parameters
-* Immutable input parameters
-* Make exceptions explicit
+[.smaller]
+* **1** potential input
+** {y} parameters
+** {n} instance state – static methods, pass as param
+** {n} global state - pass as param
+* **1** potential output
+** {y} return value
+** {n} mutable instance state - immutability
+** {n} mutable global state - immutability
+** {n} mutable parameters - immutability
+** {n} exceptions - pass as return value
 
 == Immutability
 
-* `==` implies `equals`
+* No side effects
+* Fewer possible interactions
 * Sharing becomes safe
 * Deep-copying becomes unnecessary
-* Fewer possible interactions
+* `==` implies `equals`
 
 == Functional Programming
 
 If we only use immutable data, we need functional control structures
-
-== Data In – Data Out
-
-* Known as *pure* or *side-effect-free*
-* Easy to understand (just like math)
-* Easy to test
 
 == Readable Code
 
@@ -87,3 +133,8 @@ Function calls can mentally be replaced by their results
 Your brain can focus on the scope of one method.
 
 You can be sure that nothing else is relevant.
+
+== Resources
+
+* http://javaslang.com[Javaslang]
+* http://blog.jenkster.com/2015/12/what-is-functional-programming.html[Kris Jenkins: What Is Functional Programming?]

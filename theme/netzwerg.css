@@ -277,3 +277,23 @@ div .source {
     font-size: small;
     text-align: right;
 }
+
+/*********************************************
+ * Rahel's Additions
+ *********************************************/
+
+.limegreen {
+    color: limegreen;
+}
+
+.red {
+    color: red;
+}
+
+.smaller div {
+    font-size: 0.8em;
+}
+
+.smaller ul {
+    font-size: 0.8em;
+}

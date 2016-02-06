@@ -65,6 +65,9 @@ asciidoctor {
     }
 
     resources {
+        from (sourceDir) {
+            include 'images/**'
+        }
         from (downloadDir) {
             include 'reveal.js/**'
         }
