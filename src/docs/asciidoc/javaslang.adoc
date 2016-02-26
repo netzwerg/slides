@@ -1,4 +1,4 @@
-:blank: pass:[ +]
+:space: pass:[ +]
 :y: icon:check[role="limegreen"]
 :n: icon:times[role="red"]
 ifndef::imagesdir[:imagesdir: images]
@@ -17,30 +17,33 @@ Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999]
 == Why?
 
 Fundamental nonsense at the heart of programming:
-{blank}
-{blank}
-```
+{space}
+{space}
+```java
 x = x + 1
 ```
-{blank}
+{space}
 But it's an assignment, I hear you say – well...
 
 == Math Functions vs. Java Methods
 
 Math
-```
+```java
 y = sin(x)
 ```
-{blank}
+{space}
 Java
 ```java
 List<String> doSomething(List<String> list)
 ```
 == Math Functions
 
-```
+{space}
+```java
 y = sin(x)
 ```
+{space}
+
 * 1 input -> 1 output
 * same input -> same output
 * referential transparency
@@ -50,14 +53,15 @@ y = sin(x)
 * Known as *pure* or *side-effect-free*
 * Easy to understand
 * Easy to test
+* Function chaining: Programs as data pipelines
 
 == Java Methods
 
-{blank}
+{space}
 ```java
 List<String> doSomething(List<String> list)
 ```
-{blank}
+{space}
 
 * 3 potential inputs
 * 5 potential outputs
@@ -90,8 +94,8 @@ include::../../main/java/ch/netzwerg/javaslang/Snippets.java[tags=input-output]
 
 * Hard to write, read & test
 * Shared mutable state is evil
-{blank}
-{blank}
+{space}
+{space}
 
 [.thumb]
 image::tweet.png[width=70%]
@@ -121,12 +125,6 @@ image::tweet.png[width=70%]
 == Functional Programming
 
 If we only use immutable data, we need functional control structures
-
-== Readable Code
-
-Programs as data pipelines
-
-Function calls can mentally be replaced by their results
 
 == A Simple Mental Model
 

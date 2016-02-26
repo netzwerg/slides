@@ -48,14 +48,6 @@ download {
     outputs.dir revealjsDir
 }
 
-task copyCustomTheme(type: Copy) {
-    from 'theme'
-    into "$downloadDir/reveal.js/css/theme"
-    include '**/netzwerg.css'
-}
-
-download.finalizedBy copyCustomTheme
-
 asciidoctor {
 
     dependsOn jrubyPrepareGems
@@ -86,7 +78,7 @@ asciidoctor {
             'idprefix':'',
             'idseparator':'-',
             'docinfo1':'true',
-            'revealjs_theme':'netzwerg',
+            'revealjs_theme':'solarized',
             'revealjs_transition':'linear',
             'revealjs_history':'true',
             'revealjs_slideNumber':'true',
