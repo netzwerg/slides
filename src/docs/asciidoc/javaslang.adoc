@@ -4,10 +4,11 @@
 ifndef::imagesdir[:imagesdir: images]
 = Javaslang
 
-More Control. Less Code. +
-Functional Library for Java 8+
-
-Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999]
+A Functional Library for Java 8+
+{space}
+{space}
+Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999] +
+May 2016
 
 == Javaslang
 
@@ -52,6 +53,7 @@ y = sin(x)
 
 * Known as *pure* or *side-effect-free*
 * Easy to understand
+* Easy to write
 * Easy to test
 * Function chaining: Programs as data pipelines
 
@@ -92,13 +94,15 @@ include::../../main/java/ch/netzwerg/javaslang/Snippets.java[tags=input-output]
 
 == Why Is This Bad?
 
+* Many possible interactions
 * Hard to write, read & test
+* Hard to re-use
 * Shared mutable state is evil
 {space}
 {space}
 
 [.thumb]
-image::tweet.png[width=70%]
+image::tweet-d6.png[width=70%]
 
 == We Can Do Better!
 
@@ -124,15 +128,132 @@ image::tweet.png[width=70%]
 
 == Functional Programming
 
-If we only use immutable data, we need functional control structures
+A simple mental model:
 
-== A Simple Mental Model
+* Your brain can focus on the scope of one method
+* You can be sure that nothing else is relevant
 
-Your brain can focus on the scope of one method.
+But:
 
-You can be sure that nothing else is relevant.
+We need immutable collections and functional control structures
+
+== Immutable Collections
+
+Java only offers pseudo-immutability:
+[source,java]
+----
+List<String> list = Arrays.asList("hello", "runtime-errors");
+List<String> unmodifiableList = Collections.unmodifiableList(list);
+unmodifiableList.add("boom"); // UnsupportedOperationException
+----
+
+Javaslang offers truly immutable collections:
+[source,java]
+----
+List<String> l = List.of("immutability");
+List<String> newCopy = l.prepend("hello");
+----
+
+== Overview
+
+image::javaslang-overview.png[]
+
+== Simplicity 1/2
+
+Java:
+[source,java]
+----
+List<String> words = Arrays.asList("hello", "world").stream().
+                filter(s -> s.startsWith("h")).collect(Collectors.toList());
+----
+
+Javaslang:
+[source,java]
+----
+List<String> words = List.of("hello", "world").filter(s -> s.startsWith("h"));
+----
+
+== Simplicity 2/2
+
+Java needs dirty tricks for basic functionality:
+[source,java]
+----
+Map<String, Integer> map = new HashMap<String, Integer>() {
+    {
+        put("Java", 8);
+        put("Javaslang", 2);
+    }
+};
+----
+
+Javaslang:
+[source,java]
+----
+Map<String, Integer> map = HashMap.ofEntries(
+        Tuple.of("Java", 8),
+        Tuple.of("Javaslang", 2)
+);
+----
+
+== Coherence
+
+Java 8 introduced `Optional` but does not make use of it:
+[source,java]
+----
+Integer value = map.get("whatever"); // maybe null
+----
+
+Javaslang:
+[source,java]
+----
+Option<Integer> optionalValue = map.get("whatever");
+----
+
+== Better Streaming
+
+Java streams are just fancy iterators, they can only be used once:
+[source,java]
+----
+Stream<Integer> stream = Stream.of(1, 2, 3);
+List<Integer> squares = stream.map(i -> i * i).collect(Collectors.toList());
+Stream<Integer> timesTen = stream.map(i -> i * 10);
+// IllegalStateException: stream has already been operated upon or closed
+----
+
+Javaslang streams are true collections:
+[source,java]
+----
+Stream<Integer> numbers = Stream.of(1, 2, 3);
+Stream<Integer> squares = numbers.map(i -> i * i); // 1, 4, 9
+Stream<Integer> timesTen = numbers.map(i -> i * 10); // 10, 20, 30
+----
+
+== Tuples / Zipping
+[source,java]
+----
+Tuple2<String, Integer> pair = Tuple.of("java", 8);
+String first = pair._1; // "java"
+Integer second = pair._2; // 8
+
+List<String> words = List.of("hello", "java");
+List<Tuple2<String, Long>> wordsWithIndex = words.zipWithIndex();
+
+List<Integer> numbers = List.of(42, 8);
+List<Tuple2<String, Integer>> wordsWithNumbers = words.zip(numbers);
+----
+== Functional Values
+
+* *Option*: Express absence vs. presence
+* *Future*: Express pending vs. completed
+* *Try*: Express failure vs. success
+* *Lazy*: Express uninitialized vs. initialized
+* *Validation*: Express invalid vs. valid
+
+All of them are monadic containers which implement a common `Value` interface
 
 == Resources
 
-* http://javaslang.com[Javaslang]
+image::tweet-mittie.png[]
+
+* http://javaslang.io[Javaslang]
 * http://blog.jenkster.com/2015/12/what-is-functional-programming.html[Kris Jenkins: What Is Functional Programming?]
