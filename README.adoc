@@ -1,1 +1,7 @@
-# Miscellaneous AsciiDoc Slide Decks
+# Slide Decks
+
+Rahel Lüthy – http://twitter.com/netzwerg999[@netzwerg999]
+
+## 2016
+
+* http://netzwerg.ch/slides/javaslang.html[Javaslang] – Retraite http://blogs.fhnw.ch/biomedinf[Biomedical Informatics Group], FHNW
