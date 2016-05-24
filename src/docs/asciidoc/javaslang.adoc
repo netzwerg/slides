@@ -189,9 +189,9 @@ Map<String, Integer> map = new HashMap<String, Integer>() {
 Javaslang:
 [source,java]
 ----
-Map<String, Integer> map = HashMap.ofEntries(
-        Tuple.of("Java", 8),
-        Tuple.of("Javaslang", 2)
+Map<String, Integer> map = HashMap.of(
+        "Java", 8,
+        "Javaslang", 2
 );
 ----
 
